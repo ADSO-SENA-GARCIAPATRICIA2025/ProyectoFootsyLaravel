@@ -24,7 +24,7 @@ class CategoriasTable
                     ->sortable(),
             ])
             ->filters([
-                //
+                
             ])
             ->recordActions([
                 EditAction::make(),
