@@ -3,6 +3,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Producto extends Model
 {
@@ -32,4 +33,13 @@ class Producto extends Model
             'id_categoria'
         );
     }
+
+    public function variantes(): HasMany
+{
+    return $this->hasMany(
+        VarianteProducto::class,
+        'id_producto',
+        'id_producto'
+    );
+}
 }
