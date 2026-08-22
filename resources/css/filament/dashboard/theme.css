@@ -1,0 +1,50 @@
+@import 'tailwindcss';
+@import '../../../../vendor/filament/filament/resources/css/index.css';
+
+@source '../../../../app/Filament/**/*.php';
+@source '../../../../resources/views/**/*.blade.php';
+
+.fi-simple-layout {
+    background-color: #0f5bd7;
+}
+
+h1.fi-header-heading {
+    color: rgb(15, 91, 215);
+}
+
+.fi-topbar {
+    background-color: #0f5bd7;
+    color: #ffffff;
+}
+
+.fi-topbar .fi-logo,
+.fi-topbar .fi-topbar-item-label,
+.fi-topbar .fi-icon {
+    color: #ffffff;
+}
+
+.fi-topbar .fi-topbar-item-btn:hover,
+.fi-topbar .fi-topbar-item-btn:focus-visible,
+.fi-topbar .fi-topbar-item.fi-active .fi-topbar-item-btn {
+    background-color: #0b47aa;
+}
+
+.fi-topbar .fi-dropdown-panel {
+    background-color: #ffffff;
+    color: #374151;
+}
+
+.fi-topbar .fi-dropdown-panel .fi-icon {
+    color: #6b7280;
+}
+
+@media (max-width: 63.999rem) {
+    .fi-body-has-topbar .fi-sidebar-header-logo-ctn {
+        min-height: 2rem;
+        background: url('/images/logo.png') center / contain no-repeat;
+    }
+
+    .fi-body-has-topbar .fi-sidebar-header-logo-ctn .fi-logo {
+        visibility: hidden;
+    }
+}

@@ -28,9 +28,15 @@ class DashboardPanelProvider extends PanelProvider
             ->id('dashboard')
             ->path('dashboard')
             ->login()
+            ->brandLogo(asset('images/logobianco.png'))
+            ->favicon(asset('images/favicon.png'))
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Blue,
+
             ])
+           
+            ->font('Space Grotesk')
+            ->viteTheme('resources/css/filament/dashboard/theme.css')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([

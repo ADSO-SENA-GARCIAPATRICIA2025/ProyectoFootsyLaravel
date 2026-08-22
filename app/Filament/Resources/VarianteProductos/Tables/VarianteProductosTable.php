@@ -16,12 +16,16 @@ class VarianteProductosTable
         return $table
             ->columns([
                 TextColumn::make('color')
-                    ->searchable(),
+                    ->searchable()
+                    ->weight('bold'),
                 TextColumn::make('talla')
-                    ->badge(),
+                    ->badge()
+                    ->size("lg"),
                 TextColumn::make('stock')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->weight('bold')
+                    ->size("md"),
                 IconColumn::make('estadoActivo')
                     ->boolean(),
                 TextColumn::make('fechaCreacion')

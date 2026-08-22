@@ -16,7 +16,10 @@ class CategoriasTable
         return $table
             ->columns([
                 TextColumn::make('nombre')
-                    ->searchable(),
+                    ->searchable()
+                    ->weight('bold'),
+                TextColumn::make('descripcion')
+                      ->wrap(),
                 IconColumn::make('estadoActivo')
                     ->boolean(),
                 TextColumn::make('fechaCreacion')
@@ -24,7 +27,7 @@ class CategoriasTable
                     ->sortable(),
             ])
             ->filters([
-                
+
             ])
             ->recordActions([
                 EditAction::make(),

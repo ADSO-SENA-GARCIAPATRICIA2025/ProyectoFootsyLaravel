@@ -42,4 +42,14 @@ class Producto extends Model
         'id_producto'
     );
 }
+
+ public function fotos(): HasMany
+{
+    return $this->hasMany(
+        FotoProducto::class,
+        'id_producto',
+        'id_producto'
+    );
+}
+
 }
