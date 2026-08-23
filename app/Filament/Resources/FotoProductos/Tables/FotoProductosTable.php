@@ -42,8 +42,9 @@ class FotoProductosTable
                 TextColumn::make('fechaCreacion')
                     ->dateTime()
                     ->sortable(),
-                TextColumn::make('id_producto')
-                    ->numeric()
+                TextColumn::make('producto.nombreProducto')
+                    ->label('Producto')
+                    ->searchable()
                     ->sortable(),
             ])
             ->filters([
