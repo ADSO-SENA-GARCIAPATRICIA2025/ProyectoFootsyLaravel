@@ -22,6 +22,13 @@ class VarianteProducto extends Model
         'id_producto',
     ];
 
+    protected $casts = [
+        'talla' => 'string',
+        'stock' => 'integer',
+        'estadoActivo' => 'boolean',
+    ];
+
+
     public function producto(): BelongsTo
     {
         return $this->belongsTo(

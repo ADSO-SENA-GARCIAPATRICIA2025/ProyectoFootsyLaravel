@@ -29,6 +29,7 @@ class VarianteProductoForm
                         '43' => '43',
                         '44' => '44',
                         '45' => '45',])
+                          ->dehydrateStateUsing(fn ($state) => (string) $state)
                     ->required(),
                 TextInput::make('stock')
                     ->required()

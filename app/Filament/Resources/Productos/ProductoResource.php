@@ -7,6 +7,9 @@ use App\Filament\Resources\Productos\Pages\EditProducto;
 use App\Filament\Resources\Productos\Pages\ListProductos;
 use App\Filament\Resources\Productos\Schemas\ProductoForm;
 use App\Filament\Resources\Productos\Tables\ProductosTable;
+use App\Filament\Resources\Productos\RelationManagers\FotosRelationManager;
+use App\Filament\Resources\Productos\RelationManagers\VariantesRelationManager;
+
 use App\Models\Producto;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -32,10 +35,11 @@ class ProductoResource extends Resource
         return ProductosTable::configure($table);
     }
 
-    public static function getRelations(): array
+    public static function getRelations(): array //get relations correccion
     {
         return [
-            //
+            VariantesRelationManager::class,
+            FotosRelationManager::class,
         ];
     }
 
