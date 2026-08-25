@@ -26,6 +26,7 @@ class UserForm
                 TextInput::make('email')
                     ->label('Email')
                     ->email()
+                     ->autocomplete(false)
                     ->required(),
 
                 TextInput::make('telefono')
@@ -60,6 +61,7 @@ class UserForm
               TextInput::make('password')
                     ->label('Contraseña')
                     ->password()
+                    ->autocomplete('new-password')
                     ->required(fn (string $operation): bool => $operation === 'create')
                     ->dehydrated(fn ($state): bool => filled($state)),
             ]);
