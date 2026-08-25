@@ -18,7 +18,7 @@ use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Filament\Support\Enums\ThemeMode;
+use Filament\Enums\ThemeMode;
 
 class DashboardPanelProvider extends PanelProvider
 {
@@ -28,7 +28,7 @@ class DashboardPanelProvider extends PanelProvider
             ->default()
             ->id('dashboard')
             ->path('dashboard')
-            ->defaultThemeMode(\Filament\Support\Enums\ThemeMode::Light)
+            ->defaultThemeMode(ThemeMode::Light)
             ->login()
             ->brandLogo(asset('images/logobianco.png'))
             ->favicon(asset('images/favicon.png'))
