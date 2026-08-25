@@ -15,15 +15,15 @@ class FotoProductoSeeder extends Seeder
 
         $fotos = [
             [
-                'urlFoto' => '/images/productos/air-max-01.jpg',
+                'urlFoto' => '/images/air-max-01.jpg',
                 'orden' => 1,
             ],
             [
-                'urlFoto' => '/images/productos/air-max-02.jpg',
+                'urlFoto' => '/images/air-max-02.jpg',
                 'orden' => 2,
             ],
             [
-                'urlFoto' => '/images/productos/air-max-03.jpg',
+                'urlFoto' => '/images/air-max-03.jpg',
                 'orden' => 3,
             ],
         ];
