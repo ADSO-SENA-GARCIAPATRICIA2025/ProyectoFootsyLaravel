@@ -27,6 +27,7 @@ class DashboardPanelProvider extends PanelProvider
             ->default()
             ->id('dashboard')
             ->path('dashboard')
+            ->defaultThemeMode(\Filament\Support\Enums\ThemeMode::Light)
             ->login()
             ->brandLogo(asset('images/logobianco.png'))
             ->favicon(asset('images/favicon.png'))
@@ -34,7 +35,7 @@ class DashboardPanelProvider extends PanelProvider
                 'primary' => Color::Blue,
 
             ])
-           
+
             ->font('Space Grotesk')
             ->viteTheme('resources/css/filament/dashboard/theme.css')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
