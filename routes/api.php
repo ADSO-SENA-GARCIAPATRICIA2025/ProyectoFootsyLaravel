@@ -36,8 +36,8 @@ Route::put('/fotos/{id}', [FotoProductoController::class, 'update']);
 Route::delete('/fotos/{id}', [FotoProductoController::class, 'destroy']);
 
 /////USERS //////////////
-Route::get('/user', [UsuarioController::class, 'index']);
-Route::get('/user/{id}', [UsuarioController::class, 'show']);
-Route::post('/user', [UsuarioController::class, 'store']);
-Route::put('/user/{id}', [UsuarioController::class, 'update']);
-Route::delete('/user/{id}', [UsuarioController::class, 'destroy']);
+Route::get('/usuarios', [UsuarioController::class, 'index']);
+Route::get('/usuarios/{id}', [UsuarioController::class, 'show']);
+Route::post('/usuarios', [UsuarioController::class, 'store']);
+Route::put('/usuarios/{id}', [UsuarioController::class, 'update']);
+Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy']);
