@@ -33,19 +33,24 @@ class FotoProductosTable
                         return asset($url);
                     })
                     ->size(250)
-                    ->square(),
+                    ->square()
+                    ->toggleable(isToggledHiddenByDefault: false),
                 TextColumn::make('orden')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: false),
                 IconColumn::make('estadoActivo')
-                    ->boolean(),
+                    ->boolean()
+                    ->toggleable(isToggledHiddenByDefault: false),
                 TextColumn::make('fechaCreacion')
                     ->dateTime()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('producto.nombreProducto')
                     ->label('Producto')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
