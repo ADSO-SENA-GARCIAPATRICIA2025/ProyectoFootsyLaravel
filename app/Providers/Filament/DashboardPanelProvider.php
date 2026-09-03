@@ -30,7 +30,7 @@ class DashboardPanelProvider extends PanelProvider
             ->path('dashboard')
             ->defaultThemeMode(ThemeMode::Light)
             ->login()
-            ->brandLogo(asset('images/logobianco.png'))
+            ->brandLogo(asset('images/logo.png'))
             ->favicon(asset('images/favicon.png'))
             ->colors([
                 'primary' => Color::Blue,
