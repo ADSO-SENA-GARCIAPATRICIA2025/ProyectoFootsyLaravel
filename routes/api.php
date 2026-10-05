@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ProductoController;
 use App\Http\Controllers\Api\VarianteProductoController;
 use App\Http\Controllers\Api\FotoProductoController;
 use App\Http\Controllers\Api\UsuarioController;
+use App\Http\Controllers\DireccionController;
 
 //////CATEGORIAS//////////////////
 Route::get('/categorias', [CategoriaController::class, 'index']);
@@ -41,3 +42,11 @@ Route::get('/usuarios/{id}', [UsuarioController::class, 'show']);
 Route::post('/usuarios', [UsuarioController::class, 'store']);
 Route::put('/usuarios/{id}', [UsuarioController::class, 'update']);
 Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy']);
+
+
+////Direcciones/////
+Route::get('/direcciones', [DireccionController::class, 'index']);
+Route::get('/direcciones/{id}', [DireccionController::class, 'show']);
+Route::post('/direcciones', [DireccionController::class, 'store']);
+Route::put('/direcciones/{id}', [DireccionController::class, 'update']);
+Route::delete('/direcciones/{id}', [DireccionController::class, 'destroy']);
