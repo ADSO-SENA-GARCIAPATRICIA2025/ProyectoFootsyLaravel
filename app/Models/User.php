@@ -6,6 +6,7 @@ namespace App\Models;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -42,6 +43,21 @@ class User extends Authenticatable implements FilamentUser
     public function direcciones(): HasMany
     {
         return $this->hasMany(Direccion::class, 'id_usuario');
+    }
+
+    public function carrito(): HasOne
+    {
+        return $this->hasOne(Carrito::class, 'id_usuario');
+    }
+
+    public function metodosPagoUsuario(): HasMany
+    {
+        return $this->hasMany(MetodoPagoUsuario::class, 'id_usuario');
+    }
+
+    public function pedidos(): HasMany
+    {
+        return $this->hasMany(Pedido::class, 'id_usuario');
     }
     /**
      * Get the attributes that should be cast.

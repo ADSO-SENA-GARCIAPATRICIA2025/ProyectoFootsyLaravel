@@ -20,7 +20,7 @@ class MetodoPagoResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'metodoPago';
+    protected static ?string $recordTitleAttribute = 'nombre';
 
     public static function form(Schema $schema): Schema
     {

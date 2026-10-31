@@ -12,15 +12,7 @@ class MetodoPagoController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return response()->json(MetodoPago::all());
     }
 
     /**
@@ -28,38 +20,55 @@ class MetodoPagoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos = $request->validate([
+            'nombre' => 'required|string|max:100',
+            'proveedor' => 'nullable|string|max:100',
+            'descripcion' => 'nullable|string',
+            'estadoActivo' => 'boolean',
+        ]);
+
+        $metodoPago = MetodoPago::create($datos);
+
+        return response()->json($metodoPago->refresh(), 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(MetodoPago $metodoPago)
+    public function show(int $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(MetodoPago $metodoPago)
-    {
-        //
+        return response()->json(MetodoPago::findOrFail($id));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, MetodoPago $metodoPago)
+    public function update(Request $request, int $id)
     {
-        //
+        $metodoPago = MetodoPago::findOrFail($id);
+
+        $datos = $request->validate([
+            'nombre' => 'sometimes|required|string|max:100',
+            'proveedor' => 'nullable|string|max:100',
+            'descripcion' => 'nullable|string',
+            'estadoActivo' => 'boolean',
+        ]);
+
+        $metodoPago->update($datos);
+
+        return response()->json($metodoPago);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MetodoPago $metodoPago)
+    public function destroy(int $id)
     {
-        //
+        $metodoPago = MetodoPago::findOrFail($id);
+        $metodoPago->delete();
+
+        return response()->json([
+            'message' => 'Metodo de pago eliminado correctamente',
+        ]);
     }
 }

@@ -20,7 +20,7 @@ class CarritoResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'carrito';
+    protected static ?string $recordTitleAttribute = 'id_carrito';
 
     public static function form(Schema $schema): Schema
     {

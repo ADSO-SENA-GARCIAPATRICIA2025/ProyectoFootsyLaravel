@@ -16,20 +16,25 @@ class UserForm
             ->components([
 
                 TextInput::make('name')
+                    ->maxLength(255)
                     ->label('Nombre')
                     ->required(),
 
                 TextInput::make('apellido')
+                    ->maxLength(100)
                     ->label('Apellido')
                     ->required(),
 
                 TextInput::make('email')
                     ->label('Email')
                     ->email()
+                    ->maxLength(255)
+                    ->unique(ignoreRecord: true)
                      ->autocomplete(false)
                     ->required(),
 
                 TextInput::make('telefono')
+                    ->maxLength(30)
                     ->label('Teléfono')
                     ->tel(),
 
@@ -61,6 +66,7 @@ class UserForm
               TextInput::make('password')
                     ->label('Contraseña')
                     ->password()
+                    ->minLength(8)
                     ->autocomplete('new-password')
                     ->required(fn (string $operation): bool => $operation === 'create')
                     ->dehydrated(fn ($state): bool => filled($state)),

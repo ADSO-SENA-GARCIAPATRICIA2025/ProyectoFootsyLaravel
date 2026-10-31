@@ -12,8 +12,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('item_carritos', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('id_item_carrito');
+            $table->unsignedInteger('cantidad');
+            $table->timestamp('fechaCreacion')->useCurrent();
+
+            $table->unsignedBigInteger('id_carrito');
+            $table->unsignedBigInteger('id_variante');
+
+            $table->foreign('id_carrito')
+                ->references('id_carrito')
+                ->on('carritos')
+                ->onDelete('cascade');
+
+            $table->foreign('id_variante')
+                ->references('id_variante')
+                ->on('variante_productos')
+                ->onDelete('restrict');
+
+            $table->unique(['id_carrito', 'id_variante']);
         });
     }
 

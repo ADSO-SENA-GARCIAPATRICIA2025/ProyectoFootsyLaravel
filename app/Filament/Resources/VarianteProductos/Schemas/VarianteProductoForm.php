@@ -15,6 +15,7 @@ class VarianteProductoForm
         return $schema
             ->components([
                 TextInput::make('color')
+                    ->maxLength(50)
                     ->required(),
                 Select::make('talla')
                     ->options([
@@ -33,7 +34,9 @@ class VarianteProductoForm
                     ->required(),
                 TextInput::make('stock')
                     ->required()
-                    ->numeric()
+                    ->integer()
+                    ->minValue(0)
+                    ->maxValue(2147483647)
                     ->default(0),
                 Toggle::make('estadoActivo')
                     ->default(true),

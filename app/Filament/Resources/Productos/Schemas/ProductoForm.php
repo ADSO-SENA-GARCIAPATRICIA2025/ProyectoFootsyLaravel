@@ -16,20 +16,27 @@ class ProductoForm
             ->components([
 
                 TextInput::make('codigoProducto')
+                    ->maxLength(50)
+                    ->unique(ignoreRecord: true)
                     ->required(),
 
                 TextInput::make('nombreProducto')
+                    ->maxLength(150)
                     ->required(),
 
                 Textarea::make('descripcion')
                     ->columnSpanFull(),
 
                 TextInput::make('marca')
+                    ->maxLength(100)
                     ->required(),
 
                 TextInput::make('precioVenta')
                     ->required()
-                    ->numeric(),
+                    ->numeric()
+                    ->minValue(0)
+                    ->maxValue(99999999.99)
+                    ->rules(['decimal:0,2']),
 
                 Toggle::make('estadoActivo')
                     ->default(true),

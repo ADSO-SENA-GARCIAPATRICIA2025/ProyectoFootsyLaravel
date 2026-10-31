@@ -15,6 +15,7 @@ class CategoriaForm
         return $schema
             ->components([
                 TextInput::make('nombre')
+                    ->maxLength(100)
                     ->required(),
                 Textarea::make('descripcion')
                     ->columnSpanFull(),

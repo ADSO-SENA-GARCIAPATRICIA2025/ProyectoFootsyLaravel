@@ -26,7 +26,9 @@ class FotoProductoForm
 
                 TextInput::make('orden')
                     ->required()
-                    ->numeric()
+                    ->integer()
+                    ->minValue(1)
+                    ->maxValue(2147483647)
                     ->default(1),
 
                 Toggle::make('estadoActivo')

@@ -20,7 +20,12 @@ class PedidoResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'pedido';
+    protected static ?string $recordTitleAttribute = 'numeroOrden';
+
+    public static function canDelete(\Illuminate\Database\Eloquent\Model $record): bool
+    {
+        return parent::canDelete($record) && in_array($record->estadoPedido, ['pendiente', 'cancelado'], true);
+    }
 
     public static function form(Schema $schema): Schema
     {
