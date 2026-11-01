@@ -3,17 +3,20 @@
 namespace App\Filament\Resources\Pagos\Pages;
 
 use App\Filament\Resources\Pagos\PagoResource;
-use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\ValidationException;
 
 class EditPago extends EditRecord
 {
     protected static string $resource = PagoResource::class;
 
-    protected function getHeaderActions(): array
+    protected function handleRecordUpdate(Model $record, array $data): Model
     {
-        return [
-            DeleteAction::make(),
-        ];
+        try {
+            return parent::handleRecordUpdate($record, $data);
+        } catch (ValidationException $exception) {
+            throw PagoResource::erroresDelFormulario($exception);
+        }
     }
 }

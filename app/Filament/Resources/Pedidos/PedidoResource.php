@@ -24,7 +24,8 @@ class PedidoResource extends Resource
 
     public static function canDelete(\Illuminate\Database\Eloquent\Model $record): bool
     {
-        return parent::canDelete($record) && in_array($record->estadoPedido, ['pendiente', 'cancelado'], true);
+        return parent::canDelete($record) && in_array($record->estadoPedido, ['pendiente', 'cancelado'], true)
+            && ! $record->pagos()->exists();
     }
 
     public static function form(Schema $schema): Schema

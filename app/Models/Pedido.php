@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -116,6 +117,16 @@ class Pedido extends Model
             ])->validate();
 
             if ($pedido->exists) {
+                if ($pedido->isDirty(['subtotal', 'descuento', 'impuestos', 'costoEnvio'])
+                    && $pedido->pagos()->whereIn('estadoPago', ['pendiente', 'aprobado'])->exists()) {
+                    throw ValidationException::withMessages(['subtotal' => 'No se pueden cambiar los importes mientras el pedido tenga pagos pendientes o aprobados.']);
+                }
+
+                if ($pedido->isDirty('estadoPedido') && $pedido->estadoPedido === 'cancelado'
+                    && $pedido->pagos()->where('estadoPago', 'aprobado')->exists()) {
+                    throw ValidationException::withMessages(['estadoPedido' => 'El pedido tiene pagos aprobados. La cancelación con reembolso requiere el flujo del proveedor.']);
+                }
+
                 if ($pedido->isDirty('estadoPedido') && ! in_array($pedido->estadoPedido,
                     static::TRANSICIONES[$pedido->getOriginal('estadoPedido')] ?? [], true)) {
                     throw ValidationException::withMessages(['estadoPedido' => 'El pedido no puede pasar a ese estado desde su estado actual.']);
@@ -165,6 +176,12 @@ class Pedido extends Model
 
             $pedido->total = static::desdeCentavos($total);
         });
+
+        static::deleting(function (Pedido $pedido): void {
+            if ($pedido->pagos()->exists()) {
+                throw ValidationException::withMessages(['id_pedido' => 'No se puede eliminar un pedido con historial de pagos.']);
+            }
+        });
     }
 
     public function usuario(): BelongsTo
@@ -180,5 +197,15 @@ class Pedido extends Model
     public function items(): HasMany
     {
         return $this->hasMany(ItemPedido::class, 'id_pedido', 'id_pedido');
+    }
+
+    public function pagos(): HasMany
+    {
+        return $this->hasMany(Pago::class, 'id_pedido', 'id_pedido');
+    }
+
+    public function envio(): HasOne
+    {
+        return $this->hasOne(Envio::class, 'id_pedido', 'id_pedido');
     }
 }

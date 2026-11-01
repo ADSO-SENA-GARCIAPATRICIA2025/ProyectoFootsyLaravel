@@ -13,6 +13,7 @@ use App\Http\Controllers\MetodoPagoController;
 use App\Http\Controllers\MetodoPagoUsuarioController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ItemPedidoController;
+use App\Http\Controllers\PagoController;
 
 //////CATEGORIAS//////////////////
 Route::get('/categorias', [CategoriaController::class, 'index']);
@@ -99,4 +100,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/item-pedidos', [ItemPedidoController::class, 'store']);
     Route::put('/item-pedidos/{id}', [ItemPedidoController::class, 'update']);
     Route::delete('/item-pedidos/{id}', [ItemPedidoController::class, 'destroy']);
+
+    /////PAGOS: CONSULTA DEL CLIENTE Y REGISTRO ADMINISTRATIVO//////////////
+    Route::get('/pagos', [PagoController::class, 'index']);
+    Route::get('/pagos/{id}', [PagoController::class, 'show']);
+    Route::post('/pagos', [PagoController::class, 'store']);
+    Route::put('/pagos/{id}', [PagoController::class, 'update']);
+    Route::delete('/pagos/{id}', [PagoController::class, 'destroy']);
 });

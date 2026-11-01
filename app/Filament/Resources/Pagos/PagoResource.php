@@ -13,6 +13,8 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\ValidationException;
 
 class PagoResource extends Resource
 {
@@ -20,7 +22,32 @@ class PagoResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'pago';
+    protected static ?string $recordTitleAttribute = 'id_pago';
+
+    public static function canEdit(Model $record): bool
+    {
+        return parent::canEdit($record) && $record->estadoPago === 'pendiente';
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return false;
+    }
+
+    public static function canDeleteAny(): bool
+    {
+        return false;
+    }
+
+    public static function erroresDelFormulario(ValidationException $exception): ValidationException
+    {
+        $errores = [];
+        foreach ($exception->errors() as $campo => $mensajes) {
+            $errores['data.' . $campo] = $mensajes;
+        }
+
+        return ValidationException::withMessages($errores);
+    }
 
     public static function form(Schema $schema): Schema
     {
